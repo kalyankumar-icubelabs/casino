@@ -3,7 +3,6 @@
     margin-top: 2.5rem;
     background-color: rgb(27, 29, 33);
     padding: 48px 0px 0px;
-    border: 1px red solid;
 }
 .footerWrap{
     display: flex;
@@ -13,7 +12,6 @@
     max-width: 1328px;
     padding: 0px 16px;
     line-height: 2;
-    border: 1px red solid;
 }
 
 @media screen and (max-width: 621px){

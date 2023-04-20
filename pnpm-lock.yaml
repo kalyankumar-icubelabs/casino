@@ -4,11 +4,13 @@ specifiers:
   '@emotion/react': ^11.10.6
   '@mantine/core': ^6.0.8
   '@mantine/hooks': ^6.0.8
+  '@tabler/icons-react': ^2.16.0
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
   eslint: 8.38.0
   eslint-config-next: 13.3.0
+  install: ^0.13.0
   next: 13.3.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -19,11 +21,13 @@ dependencies:
   '@emotion/react': 11.10.6_24ukasupqqblpyncii3ycicuiu
   '@mantine/core': 6.0.8_svkkul2r2qy73xsdkob6rdhc44
   '@mantine/hooks': 6.0.8_react@18.2.0
+  '@tabler/icons-react': 2.16.0_react@18.2.0
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
   eslint: 8.38.0
   eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
+  install: 0.13.0
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -556,6 +560,20 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tabler/icons-react/2.16.0_react@18.2.0:
+    resolution: {integrity: sha512-WwVjPzwvChmaQfhOjaVPyUjHeUosP2G1kqG6RfSkOWWiGx46nfZG7ekuBDidXuvMdTP1o2iC9JJIGm6mz3k5Uw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tabler/icons': 2.16.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@tabler/icons/2.16.0:
+    resolution: {integrity: sha512-1kaPH5APIWGtXe0W0eQ9g4MdfaQJ2gh95TAa94lNAqRR0JeC3fkD0yXGCcUiNK4GnGDv3UtPSCd3dbdKTe1b2A==}
     dev: false
 
   /@types/json5/0.0.29:
@@ -1683,6 +1701,11 @@ packages:
 
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+    dev: false
+
+  /install/0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
     dev: false
 
   /internal-slot/1.0.5:
