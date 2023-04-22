@@ -1,6 +1,8 @@
+import { useContext, useEffect } from 'react';
 import { createStyles, Text, Container,ActionIcon,Image, Group, rem, Title} from '@mantine/core';
 import styles from "./index.module.css"
 
+import { TransistionContext } from '@/providers/LayoutProvider';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -16,7 +18,6 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     marginTop: rem(5),
-
     [theme.fn.smallerThan('sm')]: {
       marginTop: theme.spacing.xs,
       textAlign: 'center',
@@ -98,6 +99,7 @@ interface FooterLinksProps {
 
 export function Footer({ data }: FooterLinksProps) {
   const { classes } = useStyles();
+  const {transistion}=useContext(TransistionContext)
 
   const groups = data.map((each,index) => {
       (<Text<'a'>
@@ -119,7 +121,7 @@ export function Footer({ data }: FooterLinksProps) {
   });
 
   return (
-    <footer className={styles.footerContainer}>
+    <footer className={`${styles.footerContainer} ${transistion? styles.display:styles.displayFullScreen}`}>
         <div className={styles.footerWrap}>
         <Image alt="Logo" src="" className={styles.logo}/>
         <div className={styles.descritpionAndGroupContainer}>

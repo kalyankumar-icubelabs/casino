@@ -16,17 +16,16 @@ export default function App({ Component, pageProps }: AppProps) {
   
   return (
     <TransistionContext.Provider value={{transistion,onClickTransistion}}>
-      <MantineProvider>
+      <MantineProvider withGlobalStyles>
       <div>
      <Header/>
     <Flex style={{height:"100vh"}}>
     <NavbarSimple/>
       <Component {...pageProps} />
-    </Flex>
-     
-      {/*<Footer data={[{title:"HELP CENTER",link:"/help-center"},
+    </Flex>     
+      <Footer data={[{title:"HELP CENTER",link:"/help-center"},
       {title:"USER AGREEMENT",link:"/user-agreement"}, {title:"USER AGREEMENT",link:"/user-agreement"}
-      ]}/>*/}
+      ]}/>
     </div>
     </MantineProvider>
     </TransistionContext.Provider>

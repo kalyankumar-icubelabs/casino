@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { createStyles, Navbar, Group, Code, getStylesRef, rem } from '@mantine/core';
+import { useState,useContext } from 'react';
+import { createStyles, Navbar, Group, Code, getStylesRef, rem} from '@mantine/core';
 import {
   IconBellRinging,
   IconFingerprint,
@@ -12,17 +12,18 @@ import {
   IconLogout,
 } from '@tabler/icons-react';
 
+import { TransistionContext } from "@/providers/LayoutProvider";
+
 import styles from "./index.module.css"
 
 const useStyles = createStyles((theme) => ({
 
   navbar:{
-      [theme.fn.largerThan("sm")]:{
-        width:"100px"
-      },
-      [theme.fn.largerThan("lg")]:{
-        width:"240px"
-      }
+      width:"80px"
+  },
+
+  navbarActive:{
+    width: "250px"
   },
 
   header: {
@@ -64,8 +65,9 @@ const useStyles = createStyles((theme) => ({
 
   linkIcon: {
     ref: getStylesRef('icon'),
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+    color: "red",
     marginRight: theme.spacing.sm,
+    fontSize:"500px"
   },
 
   linkActive: {
@@ -79,13 +81,11 @@ const useStyles = createStyles((theme) => ({
   },
   
   linkLabels:{
-   [theme.fn.largerThan("xs")]:{
     display:"none"
-   },
-   [theme.fn.largerThan("md")]:{
-    display:"block"
-   }
-}
+}, 
+  displayLinkLabels:{
+    overflowX:"hidden"
+  }
 
 }));
 
@@ -102,6 +102,7 @@ const data = [
 export default function NavbarSimple() {
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Billing');
+  const{transistion}=useContext(TransistionContext)
 
   const links = data.map((item) => (
     <a
@@ -113,17 +114,21 @@ export default function NavbarSimple() {
         setActive(item.label);
       }}
     >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span className={classes.linkLabels}>{item.label}</span>
+      <item.icon className={classes.linkIcon}  stroke={1.5} />
+      <span style={{display:transistion? "block" :"none"}}>{item.label}</span>
     </a>
   ));
 
   return (
-    <Navbar style={{position:"fixed",top:"0rem"}} height={700} className={classes.navbar} p="md">
-      <Navbar.Section grow>
+    <Navbar 
+    style={{position:"fixed",top:"0rem",backgroundColor:'rgb(30, 32, 36)',height:"100vh"}} 
+    
+    className={transistion? `${classes.navbarActive}` : `${classes.navbar}`}
+    p="md">
+      <Navbar.Section style={{marginTop:"4rem"}} >
         {links}
       </Navbar.Section>
-      <Navbar.Section className={classes.footer}>
+     {/* <Navbar.Section className={classes.footer}>
         <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
           <span>Change account</span>
@@ -133,7 +138,7 @@ export default function NavbarSimple() {
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
         </a>
-      </Navbar.Section>
+  </Navbar.Section> */}
     </Navbar>
   );
 }

@@ -4,6 +4,14 @@
     background-color: rgb(27, 29, 33);
     padding: 48px 0px 0px;
 }
+
+.displayFullScreen{
+    margin-left: 65px;
+}
+
+.display{
+    margin-left: 250px;
+}
 .footerWrap{
     display: flex;
     flex-direction: column;

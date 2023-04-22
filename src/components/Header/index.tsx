@@ -12,7 +12,7 @@ export default function Header(){
         console.log(transistionEffect.transistion)
     })
     return(
-         <Flex className={styles.headerContainer}>
+         <Flex className={transistionEffect.transistion? `${styles.sidebarDisplaying}` :`${styles.headerContainer}`}>
         <Flex className={styles.headerWrap}>
             <Flex className={styles.header}>
                 <Flex className={`${styles.iconAndSearchContainer} 
@@ -32,8 +32,8 @@ export default function Header(){
                 <Flex className={styles.loginContainer}>
                     <p className={styles.signIn}>Sign In</p>
                     <Button className={styles.signupButton}>Sign up</Button>
-                    <Button >
-                        <IconMenu2 onClick={transistionEffect.onClickTransistion}/>    
+                    <Button onClick={transistionEffect.onClickTransistion}>
+                        <IconMenu2 />    
                     </Button>
                 </Flex>
             </Flex>
