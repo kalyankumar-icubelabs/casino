@@ -1,5 +1,4 @@
 import { useContext,useEffect } from "react";
-
 import {Flex,Image,Button} from "@mantine/core"
 import { AiOutlineSearch } from "react-icons/ai";
 import {IconMenu2} from '@tabler/icons-react';
@@ -8,9 +7,7 @@ import { TransistionContext } from "@/providers/LayoutProvider";
 
 export default function Header(){
     const transistionEffect=useContext(TransistionContext)
-    useEffect(()=>{
-        console.log(transistionEffect.transistion)
-    })
+   
     return(
          <Flex className={transistionEffect.transistion? `${styles.sidebarDisplaying}` :`${styles.headerContainer}`}>
         <Flex className={styles.headerWrap}>
