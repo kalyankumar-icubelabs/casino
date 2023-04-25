@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import {createStyles, Flex,Image,Text,Anchor,rem} from "@mantine/core";
+
+import { TransistionContext } from "@/providers/LayoutProvider";
 
 const useStyles=createStyles((theme)=>({
     footer:{
@@ -9,6 +12,15 @@ const useStyles=createStyles((theme)=>({
         padding: '48px 10px 48px 20px',
         [theme.fn.smallerThan("sm")]:{
             alignItems:"center"
+        },
+        [theme.fn.largerThan("sm")]:{
+            marginLeft:60
+        }
+    },
+
+    sidebarDisplaying:{
+        [theme.fn.largerThan("sm")]:{
+            marginLeft: 240
         }
     },
     
@@ -27,14 +39,18 @@ const useStyles=createStyles((theme)=>({
 
     footerDescriptionContainer:{
         [theme.fn.largerThan("sm")]:{
+            borderRight:"1px grey solid",
             width:"45%"
         }
     },
 
     footerDescription:{
-        fontSize: '12px',
+        fontSize: '14px',
         lineHeight: 2.3,
         color: 'rgba(153, 164, 176, 0.8)',
+        [theme.fn.largerThan("sm")]:{
+            width:400,
+        },
         [theme.fn.smallerThan("sm")]:{
             textAlign:"center"
         }
@@ -57,7 +73,6 @@ const useStyles=createStyles((theme)=>({
     linksWrapper:{
         display:"flex",
         flexDirection:"column",
-        
         [theme.fn.smallerThan('sm')]:{
             display:"flex",
             flexDirection:"row",
@@ -100,7 +115,7 @@ interface FooterLinksProps {
   }
 
 export default function Footer2({ data }: FooterLinksProps){
-
+    const {transistion}=useContext(TransistionContext)
     const{classes}=useStyles()
     
     const groups = data.map((each,index) => {
@@ -110,7 +125,7 @@ export default function Footer2({ data }: FooterLinksProps){
     });
 
     return(
-        <Flex className={classes.footer}>
+        <Flex className={`${classes.footer} ${transistion? classes.sidebarDisplaying : ""}`}>
           <Image src="https://static.nanogames.io/assets/logo.cebcfe09.png"
           alt="logo"
           width={160}/>

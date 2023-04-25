@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   },[smallScreen,mediumScreen])
 
- console.log(extraSmallScreen)
+
 
   const onClickTransistion=()=>{
     setTransistion(!transistion)
@@ -34,11 +34,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <TransistionContext.Provider value={{transistion,onClickTransistion}}>
       <MantineProvider 
        withGlobalStyles>
-    { /* {extraSmallScreen? <MobileHeader/> : <Header/>}
+       {extraSmallScreen? <MobileHeader/> : <Header/>}
     <Flex style={{height:"100vh"}}>
    {extraSmallScreen? "" : <NavbarSimple/>}
        <Component {...pageProps} /> 
-  </Flex> */ }   
+  </Flex>  
       <Footer2 data={[
         {title:"HELP CENTER",link:"/help-center"},
         {title:"USER AGREEMENT",link:"/user-agreement"},

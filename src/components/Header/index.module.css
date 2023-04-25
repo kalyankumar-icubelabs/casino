@@ -1,13 +1,37 @@
+.burgerIcon{
+    z-index:10000;
+    position: fixed;
+    top:12px;
+    outline:none;
+    user-select: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    background-color: rgb(26, 28, 32);
+    border-radius: 100%;
+}
+
+
+
+.burgerFullSideNav{
+    left:230px
+}
+
+.burgerSideNavIcons{
+    left:60px
+}
+
 
 .headerContainer{
     height: 4rem;
-    background-color: rgb(36, 38, 43);
+    background-color: #24262b;
     position:fixed;
     left:0px;
     top:0px;
     right:0px;
     margin-left: 60px;
-}
+} 
 
 .sidebarDisplaying{
     margin-left: 250px;
@@ -47,6 +71,7 @@
 .iconContainer{
     height: 100%;
     display: flex;
+    margin-left: 20px;
     -webkit-box-align: center;
     align-items: center;
     cursor: pointer;

@@ -36,7 +36,6 @@ import {
     headerBox:{
         backgroundColor: "rgb(36, 38, 43)",
         heigth:"4rem",
-        border:"1px red solid",
         padding:0,
         margin:0
       },
@@ -177,8 +176,6 @@ import {
       <Box >
         <Header height={60} px="md" className={classes.headerBox}>
           <Group position="apart" sx={{ height: '100%' }}>
-            
-  
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
               <a href="#" className={classes.link}>
                 Home
@@ -236,20 +233,20 @@ import {
               </a>
             </Group>
   
-            <Group className={classes.hiddenMobile}>
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
+            <Flex style={{alignItems:"center",justifyContent:"space-between",width:"100%"}}>
             <Flex>
-            <Image style={{height:"24px",width:"32px",marginRight:"10px"}} src="https://static.nanogames.io/assets/logo_small.c965cce9.png" alt="logo"/>
+            <Image style={{height:"24px",width:"32px",marginRight:"10px"}} 
+            src="https://static.nanogames.io/assets/logo_small.c965cce9.png" 
+            alt="logo"/>
            <span style={{border:"1px red solid",color:"white"}}>
            <Burger opened={drawerOpened}  onClick={toggleDrawer} className={classes.hiddenDesktop} />
            </span>
             </Flex>
-           <Flex style={{alignItems:"center"}}>
+            <Flex style={{alignItems:"center"}}>
            <p className={classes.signIn}>Sign in</p>
             <Button className={classes.signUpBtn}>Sign Up</Button>
-           </Flex>
+           </Flex>  
+            </Flex>
           </Group>
          
         </Header>
@@ -284,7 +281,6 @@ import {
             <a href="#" className={classes.link}>
               Academy
             </a>
-  
             <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
           {/*  <Group position="center" grow pb="xl" px="md">
               <Button variant="default">Log in</Button>

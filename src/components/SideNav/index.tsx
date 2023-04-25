@@ -1,5 +1,5 @@
 import { useState,useContext } from 'react';
-import { createStyles, Navbar, Group, Code, getStylesRef, rem} from '@mantine/core';
+import { createStyles, Navbar, Group, Code, getStylesRef, rem,Anchor} from '@mantine/core';
 import {
   IconBellRinging,
   IconFingerprint,
@@ -14,7 +14,7 @@ import {
 
 import { TransistionContext } from "@/providers/LayoutProvider";
 
-import styles from "./index.module.css"
+
 
 const useStyles = createStyles((theme) => ({
 
@@ -49,7 +49,7 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
     fontSize: theme.fontSizes.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-    padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
+    padding: `${theme.spacing.xs}`,
     borderRadius: theme.radius.sm,
     fontWeight: 500,
 
@@ -66,8 +66,8 @@ const useStyles = createStyles((theme) => ({
   linkIcon: {
     ref: getStylesRef('icon'),
     color: "red",
-    marginRight: theme.spacing.sm,
-    fontSize:"500px"
+    marginRight: 4,
+    marginLeft:4
   },
 
   linkActive: {

@@ -7,8 +7,14 @@ import { TransistionContext } from "@/providers/LayoutProvider";
 
 export default function Header(){
     const transistionEffect=useContext(TransistionContext)
-   
+    
     return(
+    <>
+        <Button onClick={transistionEffect.onClickTransistion}
+        className={`${styles.burgerIcon} 
+        ${transistionEffect.transistion? styles.burgerFullSideNav: styles.burgerSideNavIcons}`}>
+        <IconMenu2 size={20} />    
+    </Button>
          <Flex className={transistionEffect.transistion? `${styles.sidebarDisplaying}` :`${styles.headerContainer}`}>
         <Flex className={styles.headerWrap}>
             <Flex className={styles.header}>
@@ -29,12 +35,11 @@ export default function Header(){
                 <Flex className={styles.loginContainer}>
                     <p className={styles.signIn}>Sign In</p>
                     <Button className={styles.signupButton}>Sign up</Button>
-                    <Button onClick={transistionEffect.onClickTransistion}>
-                        <IconMenu2 />    
-                    </Button>
+                   
                 </Flex>
             </Flex>
         </Flex>
     </Flex>
+    </>
     )
 }
