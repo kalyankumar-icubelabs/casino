@@ -1,159 +1,159 @@
-import { useContext, useEffect } from 'react';
-import { createStyles, Text, Container,ActionIcon,Image, Group, rem, Title} from '@mantine/core';
-import styles from "./index.module.css"
+import { useContext } from "react";
+import {createStyles, Flex,Image,Text,Anchor,rem} from "@mantine/core";
 
-import { TransistionContext } from '@/providers/LayoutProvider';
+import { TransistionContext } from "@/providers/LayoutProvider";
 
-const useStyles = createStyles((theme) => ({
-  footer: {
-    marginTop: rem(120),
-    paddingTop: `calc(${theme.spacing.xl} * 2)`,
-    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
-  },
-
-
-  description: {
-    marginTop: rem(5),
-    [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
-      textAlign: 'center',
+const useStyles=createStyles((theme)=>({
+    footer:{
+        display:"flex",
+        flexDirection:"column",
+        backgroundColor: 'rgb(27, 29, 33)',
+        padding: '48px 10px 48px 20px',
+        [theme.fn.smallerThan("sm")]:{
+            alignItems:"center"
+        },
+        [theme.fn.largerThan("sm")]:{
+            marginLeft:60,
+            
+        },
+        [theme.fn.largerThan("md")]:{
+            padding:"48px 60px 48px 60px"
+        }
     },
-  },
 
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
+    sidebarDisplaying:{
+        [theme.fn.largerThan("sm")]:{
+            marginLeft: 240
+        }
     },
-  },
-
-  groups: {
-    display: 'flex',
-    flexWrap: 'wrap',
-
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
+    
+    footerWrapper:{
+        width:"100%",
+        justifyContent:"space-between",
+        paddingBottom:20,
+        [theme.fn.smallerThan("sm")]:{
+            display:"flex",
+            flexDirection:"column",
+        },
+        [theme.fn.largerThan("sm")]:{
+            borderBottom:"1px grey solid"
+        }
     },
-  },
 
-  wrapper: {
-    width: rem(160),
-  },
-
-  link: {
-    display: 'block',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
-    fontSize: theme.fontSizes.sm,
-    paddingTop: rem(3),
-    paddingBottom: rem(3),
-
-    '&:hover': {
-      textDecoration: 'underline',
+    footerDescriptionContainer:{
+        [theme.fn.largerThan("sm")]:{
+            borderRight:"1px grey solid",
+            width:"45%"
+        }
     },
-  },
 
-  title: {
-    fontSize: theme.fontSizes.lg,
-    fontWeight: 700,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    marginBottom: `calc(${theme.spacing.xs} / 2)`,
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  },
-
-  afterFooter: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: theme.spacing.xl,
-    paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.xl,
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
-
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
+    footerDescription:{
+        fontSize: '14px',
+        lineHeight: 2.3,
+        color: 'rgba(153, 164, 176, 0.8)',
+        [theme.fn.largerThan("sm")]:{
+            width:400,
+        },
+        [theme.fn.smallerThan("sm")]:{
+            textAlign:"center"
+        }
     },
-  },
 
-  social: {
-    [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
+    linkStyling:{
+        fontSize:"12px",
+        padding: '0px 12px 0px 12px',
+        whiteSpace: 'nowrap',
+        lineHeight:(2),
+        color:"white",
+        '&:hover':{
+            color:"#43b309",
+            cursor:"pointer",
+            textDecoration:"none"
+        }
     },
-  },
-}));
+   
+    
+    linksWrapper:{
+        display:"flex",
+        flexDirection:"column",
+        [theme.fn.smallerThan('sm')]:{
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"center",
+            flexWrap:"wrap",
+            borderBottom:"1px grey solid",
+            padding:"20px 0 20px 0"
+        },
+        
+    },
+    
+    contactUsSection:{
+        display:"flex",
+        flexDirection:"column",
+        [theme.fn.smallerThan("sm")]:{
+            alignItems:"center",
+            marginTop:20
+        }
+    },
+
+    contactUs:{
+        color:"rgba(153, 164, 176, 0.8)",
+        fontSize:"12px",
+    },
+    
+    email:{
+        color:"rgba(153, 164, 176, 0.8)",   
+        fontSize:"11px",
+        fontWeight:600,
+        marginRight:10
+    },
+
+}))
 
 interface FooterLinksProps {
-  data: {
-    title: string;
-    link: string;
-  }[];
-}
+    data: {
+      title: string;
+      link: string;
+    }[];
+  }
 
-export function Footer({ data }: FooterLinksProps) {
-  const { classes } = useStyles();
-  const {transistion}=useContext(TransistionContext)
+export default function Footer({ data }: FooterLinksProps){
+    const {transistion}=useContext(TransistionContext)
+    const{classes}=useStyles()
+    
+    const groups = data.map((each,index) => {
+     
+  
+      return (<Anchor key={each.title} className={classes.linkStyling} href={each.link}>{each.title}</Anchor>);
+    });
 
-  const groups = data.map((each,index) => {
-      (<Text<'a'>
-        key={index}
-        className={styles.linksStyling}
-        component="a"
-        href={each.link}
-        onClick={(event) => event.preventDefault()}
-      >
-        {each.title}
-      </Text>
-    );
-
-    return (
-      <div className={classes.wrapper} key={each.title}>
-        <Text className={styles.linksStyling}>{each.title}</Text>
-      </div>
-    );
-  });
-
-  return (
-    <footer className={`${styles.footerContainer} ${transistion? styles.display:styles.displayFullScreen}`}>
-        <div className={styles.footerWrap}>
-        <Image alt="Logo" src="" className={styles.logo}/>
-        <div className={styles.descritpionAndGroupContainer}>
-        <div>
-            <Text className={styles.description}>
-            NANOGAMES.IO is built by gamblers for gamblers. 
-            With our unique community and a huge selection of games like Crash, 
-            HashDice, Plinko, Slots, and many more. Your greatest casino adventure is waiting for you!
-            </Text>
-        </div>
-        <div className={styles.linksContainer}>{groups}</div>
-        <div className={styles.contactusSection}>
+    return(
+        <Flex className={`${classes.footer} ${transistion? classes.sidebarDisplaying : ""}`}>
+          <Image src="https://static.nanogames.io/assets/logo.cebcfe09.png"
+          alt="logo"
+          width={160}/>
+          <Flex className={classes.footerWrapper}>
+            <Flex className={classes.footerDescriptionContainer}>
+                <Text className={classes.footerDescription}>
+                    NANOGAMES.IO is built by gamblers for gamblers. 
+                    With our unique community and a huge selection of games like Crash,
+                    HashDice, Plinko, Slots, and many more. Your greatest casino adventure 
+                    is waiting for you!
+                </Text>
+            </Flex>
+            <Flex className={classes.linksWrapper}>
+                {groups}
+            </Flex>
             <div>
-                <Title order={4} className={styles.contactUsTitle}>Contact Us</Title>
+            <div className={classes.contactUsSection}>
+                <Text className={classes.contactUs}>CONTACT US</Text>
+                <Text className={classes.email}>Email <span style={{color:"#43b309"}}>Support@sample.com</span></Text>
             </div>
-            <div className={styles.contactUsDetails}>
-            <span>
-                Email
-            </span>
-                 <a href="mailto:support@nanogames.io" className={styles.anchorStyle}>
-                    Support@nanogames.io
-                </a>
+            <div className={classes.contactUsSection}>
+                <Text className={classes.contactUs}>Accpeted Currencies</Text>
             </div>
-            <div>
-                <Title order={5} className={styles.acceptedCurrenciesTitle}>Accepted Currencies</Title>
             </div>
-        </div>
-        </div>
-        </div>
-      <Container className={styles.footerBottom}>
-        
-      </Container>
-    </footer>
-  );
+          </Flex>
+        </Flex>
+    )
 }

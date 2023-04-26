@@ -2,7 +2,11 @@ import { useContext,useEffect } from "react";
 import {Flex,Image,Button} from "@mantine/core"
 import { AiOutlineSearch } from "react-icons/ai";
 import {IconMenu2} from '@tabler/icons-react';
+
+import ThemeButton from "../ThemeButton";
+
 import styles from "./index.module.css"
+
 import { TransistionContext } from "@/providers/LayoutProvider";
 
 export default function Header(){
@@ -10,18 +14,18 @@ export default function Header(){
     
     return(
     <>
-        <Button onClick={transistionEffect.onClickTransistion}
+        <Button  onClick={transistionEffect.onClickTransistion}
         className={`${styles.burgerIcon} 
         ${transistionEffect.transistion? styles.burgerFullSideNav: styles.burgerSideNavIcons}`}>
-        <IconMenu2 size={20} />    
-    </Button>
+        <IconMenu2 color={"white"} size={20} />    
+        </Button>
          <Flex className={transistionEffect.transistion? `${styles.sidebarDisplaying}` :`${styles.headerContainer}`}>
         <Flex className={styles.headerWrap}>
             <Flex className={styles.header}>
                 <Flex className={`${styles.iconAndSearchContainer} 
                 ${styles.iconAndSearchContainer1}`}>
                     <Flex className={styles.iconContainer}>
-                    <Image alt="logo" src="https://static.nanogames.io/assets/logo.cebcfe09.png"/>
+                    <Image alt="logo" src="https://static.nanogames.io/assets/logo.cebcfe09.png" style={{width:"40%"}}/>
                     <Flex className={styles.searchContainer}>
                         <AiOutlineSearch/>
                         <input 
@@ -32,6 +36,7 @@ export default function Header(){
                     </Flex>
                     </Flex>
                 </Flex>
+                <ThemeButton/>
                 <Flex className={styles.loginContainer}>
                     <p className={styles.signIn}>Sign In</p>
                     <Button className={styles.signupButton}>Sign up</Button>

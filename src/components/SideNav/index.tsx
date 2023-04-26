@@ -19,11 +19,11 @@ import { TransistionContext } from "@/providers/LayoutProvider";
 const useStyles = createStyles((theme) => ({
 
   navbar:{
-      width:"80px"
+      width:80,
   },
 
   navbarActive:{
-    width: "250px"
+    width: 250,
   },
 
   header: {

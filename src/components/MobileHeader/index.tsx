@@ -34,10 +34,13 @@ import {
   
   const useStyles = createStyles((theme) => ({
     headerBox:{
+        position:"fixed",
+        left:0,
+        right:0,
+        bottom:0,
         backgroundColor: "rgb(36, 38, 43)",
         heigth:"4rem",
-        padding:0,
-        margin:0
+       
       },
     link: {
       display: 'flex',
@@ -95,8 +98,15 @@ import {
       [theme.fn.largerThan('sm')]: {
         display: 'none',
       },
+     
+    },
+
+    headerStyle:{
+      color:"white",
+      backgroundColor: 'rgb(30, 32, 36)',
     },
     
+
     signIn:{
       color: "rgb(116, 201, 23)",
       fontWeight: "bold",
@@ -112,6 +122,14 @@ import {
 
     sideMenuScroll:{
       backgroundColor: 'rgb(30, 32, 36)'
+    },
+
+    burgerSpan:{
+      textAlign:"center",
+      border:"1px grey solid",
+      width:30,
+      paddingBottom:4,
+      borderRadius:"100%"
     }
 
   }));
@@ -238,8 +256,13 @@ import {
             <Image style={{height:"24px",width:"32px",marginRight:"10px"}} 
             src="https://static.nanogames.io/assets/logo_small.c965cce9.png" 
             alt="logo"/>
-           <span style={{border:"1px red solid",color:"white"}}>
-           <Burger opened={drawerOpened}  onClick={toggleDrawer} className={classes.hiddenDesktop} />
+           <span className={classes.burgerSpan}>
+           <Burger 
+           opened={drawerOpened} 
+           size={12} 
+           color='white' 
+           onClick={toggleDrawer} 
+           className={classes.hiddenDesktop} />
            </span>
             </Flex>
             <Flex style={{alignItems:"center"}}>
@@ -258,6 +281,7 @@ import {
           padding="md"
           title="Navigation"
           className={classes.hiddenDesktop}
+          classNames={{header:classes.headerStyle}}
           zIndex={1000000}
         >
           <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md" className={classes.sideMenuScroll}>
