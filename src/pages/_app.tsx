@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { useState,useEffect,useContext } from 'react'
+import { useState,useEffect,useReducer } from 'react'
 import {MantineProvider , Flex,useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import Header from '@/components/Header'
@@ -10,19 +10,28 @@ import NavbarSimple from '@/components/SideNav'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 
 import { ThemeContext } from '@/Context/ThemeContext'
-import {TransistionContext} from "../providers/LayoutProvider"
+import { TransistionContext } from "@/Context/TransistionContext";
+
+const reducer=(state:any,action:any)=>{
+  switch(action.type){
+    case "dark_mode":
+      return true 
+    case "light_mode":
+      return false
+  }
+}
+
 
 export default function App({ Component, pageProps }: AppProps) {
-  const[themeMode,setTheme]=useState(false)
+  const[isDark,dispatch]=useReducer(reducer,false)
   const[transistion,setTransistion]=useState(false)
-  const{isDark,setThemeMode}=useContext(ThemeContext)
   
   const theme=useMantineTheme() 
   const extraSmallScreen=useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
   const smallScreen = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
   const mediumScreen=useMediaQuery(`(min-width: ${theme.breakpoints.md})`)
  
-console.log("themeMode",themeMode)
+console.log("themeMode",isDark)
 
 
   useEffect(()=>{
@@ -33,8 +42,15 @@ console.log("themeMode",themeMode)
     }
   },[smallScreen,mediumScreen])
 
- const setThemeFunction=()=>{
-  setTheme(!themeMode)
+ const setDarkThemeFunction=()=>{
+  dispatch({type:"dark_mode"})
+  console.log("dark_mode");
+  
+ }
+
+ const setLightThemeFunction=()=>{
+  dispatch({type:"light_mode"})
+  console.log("light_mode")
  }
 
   const onClickTransistion=()=>{
@@ -43,7 +59,8 @@ console.log("themeMode",themeMode)
   
   return (
     <TransistionContext.Provider value={{transistion,onClickTransistion}}>
-   <ThemeContext.Provider value={{isDark:themeMode,setThemeMode:setThemeFunction}}>
+   <ThemeContext.Provider 
+   value={{isDark:isDark!,setDarkMode:setDarkThemeFunction,setLightMode:setLightThemeFunction}}>
      <ThemeProvider >
        {extraSmallScreen? <MobileHeader/> : <Header/>}
     <Flex style={{height:"100vh",border:"1px red blue"}}>

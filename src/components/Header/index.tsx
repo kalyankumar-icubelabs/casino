@@ -3,11 +3,11 @@ import {Flex,Image,Button} from "@mantine/core"
 import { AiOutlineSearch } from "react-icons/ai";
 import {IconMenu2} from '@tabler/icons-react';
 
-import ThemeButton from "../ThemeButton";
+
 
 import styles from "./index.module.css"
 
-import { TransistionContext } from "@/providers/LayoutProvider";
+import { TransistionContext } from "@/Context/TransistionContext";
 
 export default function Header(){
     const transistionEffect=useContext(TransistionContext)
@@ -36,7 +36,6 @@ export default function Header(){
                     </Flex>
                     </Flex>
                 </Flex>
-                <ThemeButton/>
                 <Flex className={styles.loginContainer}>
                     <p className={styles.signIn}>Sign In</p>
                     <Button className={styles.signupButton}>Sign up</Button>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {createStyles, Flex,Image,Text,Anchor,rem} from "@mantine/core";
 
-import { TransistionContext } from "@/providers/LayoutProvider";
+import { TransistionContext } from "@/Context/TransistionContext";
 
 const useStyles=createStyles((theme)=>({
     footer:{
@@ -13,7 +13,7 @@ const useStyles=createStyles((theme)=>({
             alignItems:"center"
         },
         [theme.fn.largerThan("sm")]:{
-            marginLeft:60,
+            marginLeft:80,
             
         },
         [theme.fn.largerThan("md")]:{

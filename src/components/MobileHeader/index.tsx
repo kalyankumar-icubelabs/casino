@@ -1,3 +1,6 @@
+
+import ThemeButton from '../ThemeButton';
+
 import {
     createStyles,
     Header,
@@ -271,9 +274,7 @@ import {
            </Flex>  
             </Flex>
           </Group>
-         
         </Header>
-  
         <Drawer
           opened={drawerOpened}
           onClose={closeDrawer}
@@ -306,13 +307,9 @@ import {
               Academy
             </a>
             <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
-          {/*  <Group position="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-    </Group> */}
+            <ThemeButton/>
           </ScrollArea>
-        </Drawer>
-       
+        </Drawer> 
       </Box>
     );
   }
