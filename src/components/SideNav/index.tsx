@@ -123,7 +123,7 @@ export default function NavbarSimple() {
 
   return (
     <Navbar 
-    style={{position:"fixed",top:"0rem",backgroundColor:'rgb(30, 32, 36)',height:"100vh"}} 
+    style={{position:"fixed",top:"0rem",backgroundColor:'rgb(30, 32, 36)',border:0,height:"100vh"}} 
     className={transistion? `${classes.navbarActive}` : `${classes.navbar}`}
     p="md">
       <Navbar.Section style={{marginTop:"4rem"}} >

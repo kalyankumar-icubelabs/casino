@@ -9,6 +9,7 @@ const useStyles=createStyles((theme)=>({
         flexDirection:"column",
         backgroundColor: 'rgb(27, 29, 33)',
         padding: '48px 10px 48px 20px',
+        boxSizing:"content-box",
         [theme.fn.smallerThan("sm")]:{
             alignItems:"center"
         },
