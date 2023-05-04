@@ -123,9 +123,12 @@ export default function Footer({ data }: FooterLinksProps){
     const{classes}=useStyles()
     
     const groups = data.map((each,index) => {
-     
-  
-      return (<Anchor key={each.title} className={classes.linkStyling} href={each.link}>{each.title}</Anchor>);
+      return(
+      <Anchor 
+        key={each.title} 
+        className={classes.linkStyling} href={each.link}>
+            {each.title}
+      </Anchor>);
     });
 
     return(

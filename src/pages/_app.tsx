@@ -6,9 +6,11 @@ import Header from '@/components/Header'
 import MobileHeader from '@/components/MobileHeader'
 import Footer from '@/components/Footer'
 import NavbarSimple from '@/components/SideNav'
+import MobileNav from '@/components/MobileNav'
+
 
 import { ThemeProvider } from '@/providers/ThemeProvider'
-
+import LayoutProvider from '@/providers/LayoutProvider'
 import { ThemeContext } from '@/Context/ThemeContext'
 import { TransistionContext } from "@/Context/TransistionContext";
 
@@ -30,10 +32,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const extraSmallScreen=useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
   const smallScreen = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
   const mediumScreen=useMediaQuery(`(min-width: ${theme.breakpoints.md})`)
+
  
-console.log("themeMode",isDark)
-
-
   useEffect(()=>{
     if(smallScreen){
       setTransistion(false)
@@ -59,23 +59,24 @@ console.log("themeMode",isDark)
   
   return (
     <TransistionContext.Provider value={{transistion,onClickTransistion}}>
-   <ThemeContext.Provider 
-   value={{isDark:isDark!,setDarkMode:setDarkThemeFunction,setLightMode:setLightThemeFunction}}>
-     <ThemeProvider >
-       {extraSmallScreen? <MobileHeader/> : <Header/>}
-    <Flex style={{height:"100vh",border:"1px red blue"}}>
-      {extraSmallScreen? "" : <NavbarSimple/>}
-       <Component {...pageProps} /> 
-  </Flex>  
-      <Footer data={[
+      <ThemeContext.Provider value={{isDark:isDark!,setDarkMode:setDarkThemeFunction,setLightMode:setLightThemeFunction}}>
+      <ThemeProvider> 
+      {extraSmallScreen? <MobileHeader/> : <Header/>}
+        <Flex  style={{height:"100vh"}}>
+        {extraSmallScreen? "" : <NavbarSimple/>}
+          <LayoutProvider>
+            <Component {...pageProps} /> 
+          </LayoutProvider>
+        </Flex>
+        <Footer data={[
         {title:"HELP CENTER",link:"/help-center"},
         {title:"USER AGREEMENT",link:"/user-agreement"},
         {title:"PRIVACY POLICY",link:"/privacy-policy"},
         {title:"APP",link:"/app"},
       ]}/>
-  
-  </ThemeProvider>
-   </ThemeContext.Provider>
+      {extraSmallScreen&&<MobileNav/>}
+      </ThemeProvider>
+      </ThemeContext.Provider>
    </TransistionContext.Provider>
   )
 }
